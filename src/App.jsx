@@ -46,7 +46,7 @@ function App() {
   };
 
   //Starts the secret game
-  const startGame = () => {
+  const startGame = useCallback(() => {
     //pick word and pick category
     const {word, category} = pickWordAndCategory();
     
@@ -60,7 +60,7 @@ function App() {
    setLetters(wordLetters);
     
     setGameSatge(stages[1].name);
-  };
+  });
   
   // Função para remover acentos
 const normalizeChar = (char) => 
@@ -122,7 +122,7 @@ const normalizeChar = (char) =>
   const retry = () => {
     setScore(0);
     clearStates();
-    setGameSatge(stages[0].name)
+    setGameSatge(stages[1].name)
   };
  
   return (
@@ -139,7 +139,7 @@ const normalizeChar = (char) =>
                                      score={score}
       />}
 
-      {gameStage === 'end' && <GameOver retry={retry} />}
+      {gameStage === 'end' && <GameOver retry={retry} score={score}/>}
     </div>      
     
   );

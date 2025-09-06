@@ -13,7 +13,7 @@ const Game = ({
   const [letter, setLetter] = useState("");
   const letterInputRef = useRef(null);
   const handleSubmit = (e) => {
-    console.log("Game letter:", letter);
+    
     e.preventDefault();
     verifyLetter(letter);
     setLetter("");
