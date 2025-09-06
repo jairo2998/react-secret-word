@@ -59,11 +59,16 @@ function App() {
     
     setGameSatge(stages[1].name);
   };
+  
+  // Função para remover acentos
+const normalizeChar = (char) => 
+  char.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
 
   // process the letter input
   const verifyLetter = (letter) => {
     const normalizedLetter = letter.toLowerCase();
-
+    
     //check if letter is already guessed
     if (
       guessedLetters.includes(normalizedLetter) || 
@@ -77,7 +82,7 @@ function App() {
       setGuessedLetters((actualGuessedLetters) => [...actualGuessedLetters, normalizedLetter]);
     } else {
       setWrongLetters((actualWrongLetters) => [...actualWrongLetters, normalizedLetter]);
-     // setGuesses((actualGuesses) => actualGuesses - 1);
+      setGuesses((actualGuesses) => actualGuesses - 1);
     }
     console.log("guessedLetters: " + guessedLetters);
     console.log("wrongLetters: " + wrongLetters);
